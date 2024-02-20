@@ -8,6 +8,7 @@ import MongoStore from "connect-mongo";
 import path from "path";
 import fs from "fs/promises";
 import swaggerUi from "swagger-ui-express";
+import { SwaggerUIBundle, SwaggerUIStandalonePreset } from "swagger-ui-dist";
 import usersRouter from "./routes/api/users.js";
 import "./config/passport-setup.js";
 
