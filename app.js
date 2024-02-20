@@ -45,6 +45,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Test pages - REMOVE BEFORE DEPLOY
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   res.render("home", { user: req.user });
