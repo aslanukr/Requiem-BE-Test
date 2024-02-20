@@ -12,9 +12,9 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
+    { "url": "https://requiem-be-test.vercel.app/api" },
     { "url": "http://localhost:8999/api" },
-    { "url": "https://requiem-back.vercel.app/api" },
-    { "url": "https://requiem-be-test.vercel.app/api" }
+    { "url": "https://requiem-back.vercel.app/api" }
   ],
   "tags": [
     {
