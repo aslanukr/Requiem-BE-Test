@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-Test pages - REMOVE BEFORE DEPLOY
+// Test pages - REMOVE BEFORE DEPLOY
 app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   res.render("home", { user: req.user });
