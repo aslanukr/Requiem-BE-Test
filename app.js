@@ -44,17 +44,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Test pages - REMOVE BEFORE DEPLOY
-// app.set("view engine", "ejs");
-// app.get("/", (req, res) => {
-//   res.render("home", { user: req.user });
-// });
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-// app.get("/register", (req, res) => {
-//   res.render("register");
-// });
+Test pages - REMOVE BEFORE DEPLOY
+app.set("view engine", "ejs");
+app.get("/", (req, res) => {
+  res.render("home", { user: req.user });
+});
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+app.get("/register", (req, res) => {
+  res.render("register");
+});
 
 //Routing
 app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
