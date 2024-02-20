@@ -12,7 +12,9 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
-     {"url": "http://localhost:8999/api"}, {"url": "https://requiem-back.vercel.app/api"} 
+    { "url": "http://localhost:8999/api" },
+    { "url": "https://requiem-back.vercel.app/api" },
+    { "url": "https://requiem-be-test.vercel.app/api" }
   ],
   "tags": [
     {
@@ -331,7 +333,7 @@
   },
   "components": {
     "securitySchemes": {
-      "cookieAuth":{
+      "cookieAuth": {
         "type": "apiKey",
         "in": "cookie",
         "name": "connect.sid"
@@ -340,7 +342,14 @@
     "schemas": {
       "RegistrationRequest": {
         "type": "object",
-        "required": ["firstName", "middleName","lastName", "phone", "email", "password"],
+        "required": [
+          "firstName",
+          "middleName",
+          "lastName",
+          "phone",
+          "email",
+          "password"
+        ],
         "properties": {
           "firstName": {
             "type": "string",
@@ -357,7 +366,7 @@
             "description": "User's last name",
             "example": "Антоненко"
           },
-          "phone":{
+          "phone": {
             "type": "string",
             "description": "User's phone number",
             "example": "+380951110000"
@@ -510,7 +519,7 @@
             "description": "User's last name",
             "example": "Антоненко"
           },
-          "phone":{
+          "phone": {
             "type": "string",
             "description": "User's phone number",
             "example": "+380951110000"
@@ -535,11 +544,11 @@
             "description": "User's last name",
             "example": "Антоненко"
           },
-          "phone":{
+          "phone": {
             "type": "string",
             "description": "User's phone number",
             "example": "+380951110000"
-          }   
+          }
         },
         "example": {
           "firstName": "Іван",
