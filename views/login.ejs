@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Requiem BE Test</title>
+    <style>
+      body {
+        font-family: arial;
+        margin: 0;
+      }
+      nav {
+        background: #3a007c;
+        padding: 20px 10px;
+      }
+      nav ul {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0;
+      }
+      nav li {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0 10px 0 0;
+      }
+      nav a {
+        color: #fff;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+      }
+      main,
+      header {
+        max-width: 960px;
+        margin: 30px auto;
+        padding: 0 10px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </nav>
+    <header>
+      <h1>Requiem Backend Test</h1>
+      <h2>Login</h2>
+    </header>
+    <main>
+      <form method="POST" action="/api/auth/signin">
+        Enter Email:<br /><input type="text" name="email" /> <br />Enter
+        Password:<br /><input type="password" name="password" />
+        <br /><br /><input type="submit" value="Submit" />
+      </form>
+
+      <a
+        href="/api/auth/google"
+        style="
+          font-size: 12;
+          font-weight: bold;
+          color: white;
+          display: block;
+          margin-top: 20px;
+          text-decoration: none;
+          background-color: tomato;
+          width: 100px;
+          height: 30px;
+          text-align: center;
+          padding: 5px 10px;
+        "
+        >GOOGLE</a
+      >
+
+      <a
+        href="/api/auth/facebook"
+        style="
+          font-size: 12;
+          font-weight: bold;
+          color: white;
+          display: block;
+          margin-top: 20px;
+          text-decoration: none;
+          background-color: rgba(0, 0, 150, 0.5);
+          width: 100px;
+          height: 30px;
+          text-align: center;
+          padding: 5px 10px;
+        "
+        >Facebook</a
+      >
+    </main>
+  </body>
+</html>

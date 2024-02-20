@@ -1,0 +1,553 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "2.0.2",
+    "title": "Requiem API Docs - Swagger",
+    "description": "Showing off swagger-ui-express",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json"],
+  "servers": [
+     {"url": "http://localhost:8999/api"}, {"url": "https://requiem-back.vercel.app/api"} 
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User is logged in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Email or password is wrong",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "User sing in OR sign up with Google",
+        "responses": {
+          "200": {
+            "description": "The user is signed in",
+            "content": {}
+          },
+          "401": {
+            "description": "//Authorization error",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/facebook": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "User sing in OR sign up with Facebook",
+        "responses": {
+          "200": {
+            "description": "The user is signed in",
+            "content": {}
+          },
+          "401": {
+            "description": "//Authorization error",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/verify": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Verify user email",
+        "requestBody": {
+          "description": "Verify object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification successful",
+            "content": {}
+          },
+          "400": {
+            "description": "OTP expired",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/forgotPassword": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Send email with otp to reset password",
+        "requestBody": {
+          "description": "Email object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email with OTP sent",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/resetPassword": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "Reset password",
+        "requestBody": {
+          "description": "Reset password object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successful",
+            "content": {}
+          },
+          "400": {
+            "description": "Passwords are not equal / OTP expired",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/changePassword": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Change password request",
+        "security": [{ "cookieAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Email with OTP sent",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "security": [{ "cookieAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The user is logged out",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Info about current user",
+        "security": [{ "cookieAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Information found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing header with authorization token.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/user": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "Update User info",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "description": "User data",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User was successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User update failed",
+            "content": {}
+          },
+          "401": {
+            "description": "Missing header with authorization token",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth":{
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "connect.sid"
+      }
+    },
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["firstName", "middleName","lastName", "phone", "email", "password"],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User's first name",
+            "example": "Іван"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "User's middle name",
+            "example": "Миколайович"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User's last name",
+            "example": "Антоненко"
+          },
+          "phone":{
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380951110000"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password (min. 8, max. 16, 1 digit, 1 uppercase)",
+            "example": "Qwerty123"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User's first name",
+            "example": "Іван"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@gmail.com"
+          }
+        },
+        "example": { "firstName": "Іван", "email": "user@gmail.com" }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password (min. 8, max. 16, 1 digit, 1 uppercase)",
+            "example": "Qwerty12345"
+          }
+        }
+      },
+      "VerifyRequest": {
+        "type": "object",
+        "required": ["otp"],
+        "properties": {
+          "otp": {
+            "type": "number",
+            "description": "User's OTP",
+            "example": "8947"
+          }
+        }
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@gmail.com"
+          }
+        }
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "required": ["password", "confirmPassword", "otp"],
+        "properties": {
+          "otp": {
+            "type": "number",
+            "description": "User's OTP",
+            "example": "8947"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password (min. 8, max. 16, 1 digit, 1 uppercase)",
+            "example": "Qwerty12345"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "description": "User's password (min. 8, max. 16, 1 digit, 1 uppercase)",
+            "example": "Qwerty12345"
+          }
+        }
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "64ecb56e7c83b02f5b79709d"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "User's first name",
+            "example": "Іван"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "User's middle name",
+            "example": "Миколайович"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User's last name",
+            "example": "Антоненко"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@gmail.com"
+          }
+        },
+        "example": {
+          "_id": "64ecb56e7c83b02f5b79709d",
+          "firstName": "Іван",
+          "middleName": "Миколайович",
+          "lastName": "Антоненко",
+          "email": "user@gmail.com"
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "required": ["firstName", "middleName", "lastName", "phone"],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User's first name",
+            "example": "Іван"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "User's middle name",
+            "example": "Миколайович"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User's last name",
+            "example": "Антоненко"
+          },
+          "phone":{
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380951110000"
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User's first name",
+            "example": "Іван"
+          },
+          "middleName": {
+            "type": "string",
+            "description": "User's middle name",
+            "example": "Миколайович"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User's last name",
+            "example": "Антоненко"
+          },
+          "phone":{
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380951110000"
+          }   
+        },
+        "example": {
+          "firstName": "Іван",
+          "middleName": "Миколайович",
+          "lastName": "Антоненко",
+          "phone": "+380951110000"
+        }
+      }
+    }
+  }
+}
