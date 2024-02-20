@@ -16,9 +16,6 @@ const { DB_HOST, SESSION_SECRET } = process.env;
 
 const swaggerPath = path.resolve("", "swagger.json");
 const swaggerDocument = JSON.parse(await fs.readFile(swaggerPath));
-const options = {
-  customCss: ".swagger-ui .topbar { display: none }",
-};
 
 const app = express();
 
@@ -61,11 +58,7 @@ app.use(passport.session());
 // });
 
 //Routing
-app.use(
-  "/api/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument, options)
-);
+app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Auth routes
 app.use("/api/auth", usersRouter);
