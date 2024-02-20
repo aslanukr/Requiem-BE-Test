@@ -58,7 +58,14 @@ app.use(passport.session());
 // });
 
 //Routing
-app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(
+  "/api/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    customCssUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css",
+  })
+);
 
 //Auth routes
 app.use("/api/auth", usersRouter);
