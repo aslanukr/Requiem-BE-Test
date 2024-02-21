@@ -11,6 +11,8 @@ import swaggerUi from "swagger-ui-express";
 import { SwaggerUIBundle, SwaggerUIStandalonePreset } from "swagger-ui-dist";
 import usersRouter from "./routes/api/users.js";
 import "./config/passport-setup.js";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 const { DB_HOST, SESSION_SECRET } = process.env;
 
@@ -46,16 +48,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Test pages for localhost testing ONLY - REMOVE BEFORE DEPLOY
-// app.set("view engine", "ejs");
-// app.get("/", (req, res) => {
-//   res.render("home", { user: req.user });
-// });
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-// app.get("/register", (req, res) => {
-//   res.render("register");
-// });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+  res.render(path.join(__dirname, "views", "home.ejs"), { user: req.user });
+});
+
+app.get("/login", (req, res) => {
+  res.render(path.join(__dirname, "views", "login.ejs"));
+});
+
+app.get("/register", (req, res) => {
+  res.render(path.join(__dirname, "views", "register.ejs"));
+});
 
 //Routing
 app.use(
