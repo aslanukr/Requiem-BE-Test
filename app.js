@@ -71,7 +71,7 @@ app.use(
   "/api/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument, {
-    customCssUrl: "https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css",
+    customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.7/swagger-ui.min.css",
   })
 );
 
