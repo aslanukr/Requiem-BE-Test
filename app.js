@@ -39,13 +39,13 @@ app.use(
   })
 );
 
-// const corsOptions = {
-//   credentials: true,
-// };
+const corsOptions = {
+  credentials: true,
+};
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors(corsOptions)); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
