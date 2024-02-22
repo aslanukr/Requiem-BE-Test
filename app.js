@@ -40,6 +40,7 @@ app.use(
 
 const corsOptions = {
   origin: "https://requiem-front.vercel.app",
+  credentials: true,
 };
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
