@@ -13,6 +13,7 @@ import usersRouter from "./routes/api/users.js";
 import "./config/passport-setup.js";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import allowCors from "./config/allow-cors.js";
 
 const { DB_HOST, SESSION_SECRET } = process.env;
 
@@ -46,17 +47,7 @@ const corsOptions = {
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors(corsOptions));
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8999/");
-  res.header("Access-Control-Allow-Headers", true);
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  next();
-});
+app.use(allowCors);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
