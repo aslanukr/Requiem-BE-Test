@@ -21,8 +21,6 @@ const swaggerDocument = JSON.parse(await fs.readFile(swaggerPath));
 
 const app = express();
 
-app.set("trust proxy", true);
-
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -31,9 +29,8 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
-      domain: ".vercel.app",
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
@@ -42,12 +39,25 @@ app.use(
 );
 
 const corsOptions = {
+  origin: ["https://requiem-front.vercel.app/", "http://localhost:8999/"],
   credentials: true,
 };
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(cors(corsOptions)); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors(corsOptions));
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8999/");
+  res.header("Access-Control-Allow-Headers", true);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
