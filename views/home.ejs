@@ -43,22 +43,27 @@
   <body>
     <nav>
       <ul>
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
+        <li><a href="/">Головна</a></li>
+        <li><a href="/login">Вхід</a></li>
+        <li><a href="/register">Реєстрація</a></li>
       </ul>
     </nav>
     <header>
-      <h1>Requiem Backend Test</h1>
-      <h2>Homepage</h2>
+      <h1>Тестова сторінка Requiem Backend</h1>
+      <h2>Головна</h2>
     </header>
     <main>
       <% if (!user) { %>
-      <p>Hello, Anonymous</p>
+      <p>Привіт, увійди або зареєструйся!</p>
+      <br />
+      <p>
+        Після успішного логіну і повернення на головну сторінку - повинно
+        відображатись ім'я користувача
+      </p>
       <% } else { %>
-      <p>Hello, <%= user.firstName %> <%= user.lastName %></p>
+      <p>Привіт, <%= user.firstName %> <%= user.lastName %></p>
       <form action="/api/auth/logout" method="post">
-        <button type="submit">Logout</button>
+        <button type="submit">Вийти</button>
       </form>
       <% } %>
     </main>

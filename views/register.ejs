@@ -43,27 +43,28 @@
   <body>
     <nav>
       <ul>
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
+        <li><a href="/">Головна</a></li>
+        <li><a href="/login">Вхід</a></li>
+        <li><a href="/register">Реєстрація</a></li>
       </ul>
     </nav>
     <header>
-      <h1>Requiem Backend Test</h1>
-      <h2>Register</h2>
+      <h1>Тестова сторінка Requiem Backend</h1>
+      <h2>Реєстрація</h2>
     </header>
     <main>
       <form method="post" action="/api/auth/signup">
-        Enter Email:<br /><input type="email" name="email" /> <br />Enter
-        Password:<br /><input type="password" name="password" /> <br />Enter
-        First name:<br /><input type="text" name="firstName" /> <br />Enter
-        Middle name:<br /><input type="text" name="middleName" /> <br />Enter
-        Last name:<br /><input type="text" name="lastName" /> <br />Enter
-        Phone:<br /><input type="tel" name="phone" /> <br /><br /><input
+        Електронна пошта:<br /><input type="email" name="email" />
+        <br />Пароль:<br /><input type="password" name="password" /> <br />
+        Ім'я:<br /><input type="text" name="firstName" /> <br />По батькові:<br /><input
+          type="text"
+          name="middleName" />
+        <br />Прізвище:<br /><input type="text" name="lastName" />
+        <br />Телефон:<br /><input type="tel" name="phone" /> <br /><br /><input
           type="submit"
-          value="Submit" />
+          value="Зареєструватися" />
       </form>
-
+      <p>============ АБО =============</p>
       <a
         href="/api/auth/google"
         style="
