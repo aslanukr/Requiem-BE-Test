@@ -38,9 +38,13 @@ app.use(
   })
 );
 
+const corsOptions = {
+  origin: "https://requiem-front.vercel.app",
+};
+
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors(corsOptions)); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -71,7 +75,8 @@ app.use(
   "/api/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument, {
-    customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.7/swagger-ui.min.css",
+    customCssUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.7/swagger-ui.min.css",
   })
 );
 
