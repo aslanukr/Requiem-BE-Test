@@ -13,7 +13,6 @@ import usersRouter from "./routes/api/users.js";
 import "./config/passport-setup.js";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import allowCors from "./config/allow-cors.js";
 
 const { DB_HOST, SESSION_SECRET } = process.env;
 
@@ -25,13 +24,13 @@ const app = express();
 app.use(
   session({
     secret: SESSION_SECRET,
-    saveUninitialized: true,
+    saveUninitialized: false,
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       secure: false,
-      sameSite: "none",
+      // sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
@@ -39,16 +38,9 @@ app.use(
   })
 );
 
-const corsOptions = {
-  origin: ["https://requiem-front.vercel.app/", "http://localhost:8999/"],
-  credentials: true,
-};
-
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(cors(corsOptions));
-app.use(allowCors);
-
+app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

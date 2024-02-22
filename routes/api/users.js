@@ -85,11 +85,7 @@ router.patch(
   resetPassword
 );
 
-router.get(
-  "/changePassword",
-  authenticate,
-  changePassword,
-);
+router.get("/changePassword", authenticate, changePassword);
 
 //// TO DO
 router.patch(
