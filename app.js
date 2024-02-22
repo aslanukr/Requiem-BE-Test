@@ -39,7 +39,6 @@ app.use(
 );
 
 const corsOptions = {
-  origin: "https://requiem-front.vercel.app",
   credentials: true,
 };
 
