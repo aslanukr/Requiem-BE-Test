@@ -31,6 +31,7 @@ app.use(
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      domain: ".vercel.app",
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
