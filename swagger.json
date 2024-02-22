@@ -105,10 +105,16 @@
         "responses": {
           "200": {
             "description": "The user is signed in",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
           },
           "401": {
-            "description": "//Authorization error",
+            "description": "Authorization error",
             "content": {}
           },
           "500": {
@@ -125,10 +131,16 @@
         "responses": {
           "200": {
             "description": "The user is signed in",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
           },
           "401": {
-            "description": "//Authorization error",
+            "description": "Authorization error",
             "content": {}
           },
           "500": {
