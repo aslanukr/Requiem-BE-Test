@@ -21,6 +21,8 @@ const swaggerDocument = JSON.parse(await fs.readFile(swaggerPath));
 
 const app = express();
 
+app.set("trust proxy", true);
+
 app.use(
   session({
     secret: SESSION_SECRET,
