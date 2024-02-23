@@ -11,7 +11,7 @@ import {
   changePassword,
 } from "../../controllers/users/index.js";
 import schemas from "../../schemas/userSchema.js";
-import { authenticate, upload } from "../../middlewares/index.js";
+// import { authenticate, upload } from "../../middlewares/index.js";
 import { validateBody } from "../../decorators/index.js";
 
 const router = express.Router();
