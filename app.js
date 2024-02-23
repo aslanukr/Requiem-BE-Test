@@ -45,7 +45,7 @@ app.use(logger(formatsLogger));
 //   origin: "https://requiem-front.vercel.app/",
 // };
 
-app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors({ credentials: true, origin: true })); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
