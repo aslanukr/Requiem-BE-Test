@@ -42,7 +42,7 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://requiem-front.vercel.app/",
   credentials: true,
   optionSuccessStatus: 200,
 };
