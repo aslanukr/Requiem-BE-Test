@@ -2,7 +2,7 @@ import "dotenv/config";
 import { ctrlWrapper } from "../decorators/index.js";
 import { HttpError } from "../helpers/index.js";
 
-const authenticate = async (req, res, next) => {
+const authenticate = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
