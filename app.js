@@ -44,17 +44,12 @@ app.use(logger(formatsLogger));
 const corsOptions = {
   origin: "https://requiem-front.vercel.app/",
   credentials: true,
-  optionSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions)); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
-// {
-//   origin: "https://requiem-front.vercel.app/";
-// }
 
 app.use(express.urlencoded({ extended: true }));
-app.set("trust proxy", 1);
 
 app.use(passport.initialize());
 app.use(passport.session());
