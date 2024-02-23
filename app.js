@@ -43,7 +43,6 @@ app.use(logger(formatsLogger));
 
 const corsOptions = {
   origin: "https://requiem-front.vercel.app/",
-  credentials: true,
 };
 
 app.use(cors(corsOptions)); //CHANGE BEFORE DEPLOY (with origin URL)
