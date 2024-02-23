@@ -28,7 +28,7 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      // httpOnly: true,
+      httpOnly: true,
       secure: true,
       sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
     },
@@ -40,10 +40,6 @@ app.use(
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-
-// const corsOptions = {
-//   origin: "https://requiem-front.vercel.app/",
-// };
 
 app.use(cors({ credentials: true, origin: true })); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
