@@ -29,7 +29,7 @@ router.post(
   })
 );
 
-router.get("/signin/success", (req, res) => {
+router.get("/signin/success", authenticate, (req, res) => {
   if (req.user) {
     res.json({
       success: true,
