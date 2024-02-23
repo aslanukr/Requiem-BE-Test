@@ -28,7 +28,7 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: true,
+      // httpOnly: true,
       secure: false,
       // sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
     },
