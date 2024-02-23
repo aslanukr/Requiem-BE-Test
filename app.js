@@ -41,11 +41,11 @@ app.use(
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
-const corsOptions = {
-  origin: "https://requiem-front.vercel.app/",
-};
+// const corsOptions = {
+//   origin: "https://requiem-front.vercel.app/",
+// };
 
-app.use(cors(corsOptions)); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
