@@ -24,21 +24,21 @@ router.post(
   "/signin",
   passport.authenticate("local", {
     failureRedirect: "/api/auth/signin/failed",
-    successRedirect: "/api/auth/current",
-    // successRedirect: "/api/auth/signin/success",
+    // successRedirect: "/api/auth/current",
+    successRedirect: "/api/auth/signin/success",
   })
 );
 
-// router.get("/signin/success", authenticate, (req, res) => {
-//   if (req.user) {
-//     res.json({
-//       success: true,
-//       message: "User has successfully authenticated",
-//       user: req.user,
-//       cookies: req.cookies,
-//     });
-//   }
-// });
+router.get("/signin/success", authenticate, (req, res) => {
+  if (req.user) {
+    res.set("Set-Cookie", req.cookies);
+    res.json({
+      success: true,
+      message: "User has successfully authenticated",
+      user: req.user,
+    });
+  }
+});
 
 router.get("/signin/failed", (req, res) => {
   res.status(401).json({
