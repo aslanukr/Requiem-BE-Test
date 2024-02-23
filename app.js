@@ -40,7 +40,7 @@ app.use(
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
-app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors({ origin: "https://requiem-front.vercel.app/" })); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
