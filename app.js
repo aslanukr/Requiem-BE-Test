@@ -42,12 +42,7 @@ app.use(
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
-app.use(
-  cors({
-    credentials: true,
-    origin: true,
-  })
-); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors()); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
