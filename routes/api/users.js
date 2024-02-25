@@ -20,14 +20,33 @@ router.post("/signup", validateBody(schemas.userSignupSchema), register);
 
 router.post("/verify", validateBody(schemas.userOTPSchema), verifyEmail);
 
-router.post(
-  "/signin",
-  passport.authenticate("local", {
-    failureRedirect: "/api/auth/signin/failed",
-    successRedirect: "/api/auth/current",
-    // successRedirect: "/api/auth/signin/success",
-  })
-);
+router.post("/signin", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect("/api/auth/signin/failed");
+    }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      return res.redirect("/api/auth/current");
+    });
+  })(req, res, next);
+});
+
+// router.post(
+//   "/signin",
+//   passport.authenticate("local", {
+//     failureRedirect: "/api/auth/signin/failed",
+//     successRedirect: "/api/auth/current",
+//     // successRedirect: "/api/auth/signin/success",
+//   })
+// );
 
 // router.get("/signin/success", authenticate, (req, res) => {
 //   if (req.user) {
