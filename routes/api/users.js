@@ -33,8 +33,16 @@ router.post("/signin", (req, res, next) => {
       if (err) {
         return next(err);
       }
+      const { firstName, middleName, lastName, phone, email, _id } = user;
 
-      return res.json(user);
+      return res.json({
+        firstName,
+        middleName,
+        lastName,
+        phone,
+        email,
+        _id,
+      });
     });
   })(req, res, next);
 });
