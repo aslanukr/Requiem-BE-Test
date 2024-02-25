@@ -34,7 +34,7 @@ router.post("/signin", (req, res, next) => {
         return next(err);
       }
 
-      return res.redirect("/api/auth/current");
+      return res.json(user);
     });
   })(req, res, next);
 });
