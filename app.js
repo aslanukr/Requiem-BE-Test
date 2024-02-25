@@ -30,7 +30,7 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       secure: true,
-      sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
+      // sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
