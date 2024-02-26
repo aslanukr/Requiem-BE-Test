@@ -29,8 +29,8 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      secure: true,
-      sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
+      // secure: true,
+      sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
       // domain: ".vercel.app",
     },
     store: MongoStore.create({
