@@ -29,9 +29,9 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
-      domain: ".vercel.app",
+      // domain: ".vercel.app",
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
@@ -42,7 +42,7 @@ app.use(
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
-app.use(cors({ credentials: true, origin: true })); //CHANGE BEFORE DEPLOY (with origin URL)
+app.use(cors({ credentials: true, origin: "https://requiem-front.vercel.app/" })); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
