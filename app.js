@@ -44,7 +44,7 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
 app.use(
-  cors({ credentials: true, origin: 'https://requiem-front.vercel.app', allowedHeaders: "*", exposedHeaders:"*" })
+  cors({ credentials: true, origin: 'https://requiem-front.vercel.app'})
 ); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 
