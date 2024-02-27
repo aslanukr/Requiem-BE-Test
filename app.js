@@ -29,9 +29,9 @@ app.use(
     name: "authSession",
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: true,
-      // secure: true,
-      sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
+      // httpOnly: true,
+      secure: true,
+      sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
       // domain: ".vercel.app",
     },
     store: MongoStore.create({
@@ -44,7 +44,7 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 
 app.use(
-  cors({ credentials: true, origin: 'https://requiem-front.vercel.app'})
+  cors({ credentials: true, origin: "https://requiem-front.vercel.app" })
 ); //CHANGE BEFORE DEPLOY (with origin URL)
 app.use(express.json());
 
