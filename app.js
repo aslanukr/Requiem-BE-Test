@@ -29,7 +29,7 @@ app.use(
     name: "authSession",
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      // httpOnly: true,
+      httpOnly: true,
       secure: false,
       sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
       // domain: ".vercel.app",
