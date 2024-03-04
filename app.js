@@ -32,7 +32,7 @@ app.use(
       httpOnly: true,
       secure: false,
       sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
-      // domain: ".vercel.app",
+      domain: "requiem-front.vercel.app",
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
