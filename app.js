@@ -31,8 +31,8 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       secure: false,
-      sameSite: "none", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
-      domain: "requiem-front.vercel.app",
+      sameSite: "lax", //CHANGE BEFORE DEPLOY (because it blocks POST Http requests)
+      // domain: "requiem-front.vercel.app",
     },
     store: MongoStore.create({
       mongoUrl: DB_HOST,
