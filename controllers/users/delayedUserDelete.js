@@ -1,6 +1,5 @@
-import User from "../models/users.js";
-
-import { ctrlWrapper } from "../../decorators/index.js";
+import ctrlWrapper from "../../decorators/ctrlWrapper.js";
+import User from "../../models/users.js";
 
 export const delayedUserDelete = async () => {
   const now = new Date();
