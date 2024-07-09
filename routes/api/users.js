@@ -9,6 +9,7 @@ import {
   forgotPassword,
   resetPassword,
   changePassword,
+  testingCron,
 } from "../../controllers/users/index.js";
 import schemas from "../../schemas/userSchema.js";
 import { authenticate, upload } from "../../middlewares/index.js";
@@ -112,6 +113,8 @@ router.patch(
 );
 
 router.get("/changePassword", authenticate, changePassword);
+
+router.get("/testingCron", testingCron);
 
 //// TO DO
 router.patch(
