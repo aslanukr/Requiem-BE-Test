@@ -9,7 +9,8 @@ import {
   forgotPassword,
   resetPassword,
   changePassword,
-  testingCron,
+  userDelete,
+  delayedUserDelete,
 } from "../../controllers/users/index.js";
 import schemas from "../../schemas/userSchema.js";
 import { authenticate, upload } from "../../middlewares/index.js";
@@ -114,7 +115,13 @@ router.patch(
 
 router.get("/changePassword", authenticate, changePassword);
 
-router.get("/testingCron", testingCron);
+router.get("/delayedUserDelete", delayedUserDelete);
+
+router.patch(
+  "/userDelete",
+  passport.authenticate("jwt", { session: false }),
+  userDelete
+);
 
 //// TO DO
 router.patch(

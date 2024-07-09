@@ -6,4 +6,5 @@ export { default as verifyEmail } from "./verifyEmail.js";
 export { default as forgotPassword } from "./forgotPassword.js";
 export { default as resetPassword } from "./resetPassword.js";
 export { default as changePassword } from "./changePassword.js";
-export { default as testingCron } from "./testingCron.js";
+export { default as delayedUserDelete } from "./delayedUserDelete.js";
+export { default as userDelete } from "./userDelete.js";

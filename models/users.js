@@ -52,6 +52,9 @@ const userSchema = new Schema(
     otpExpire: {
       type: Date,
     },
+    deleteAt: {
+      type: Date,
+    },
   },
   { versionKey: false, timestamps: true }
 );
