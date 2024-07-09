@@ -6,11 +6,5 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/server.js" }],
-  "crons": [
-    {
-      "path": "/api/auth/delayedUserDelete",
-      "schedule": "0 0 * * *"
-    }
-  ]
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
